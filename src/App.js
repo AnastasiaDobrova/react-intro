@@ -1,25 +1,31 @@
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TestButton from './components/TestButton';
+import Clock from './components/Clock';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [showClock, setShowClock] = useState(true);
+
+    let maybeClock = null;
+    if (showClock) {
+        maybeClock = <Clock />
+    }
+
+
+    return (
+        <div className="App">
+            <header className="App-header">
+                <h1>Effects demo</h1>
+            </header>
+            <main>
+                <TestButton />
+
+                <button onClick={() => setShowClock(!showClock)}>Toggle clock</button>
+                {maybeClock}
+            </main>
+        </div>
+    );
 }
 
 export default App;
